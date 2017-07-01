@@ -2,22 +2,13 @@
 
 namespace App\Listeners\Movie;
 
+use App\Listeners\CommonListener as Listener;
 use App\Events\Movie\ShowEvent;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Jobs\Movie\Show;
 
-class HandleShowEvent
+
+class HandleShowEvent extends Listener
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     /**
      * Handle the event.
      *
@@ -26,6 +17,11 @@ class HandleShowEvent
      */
     public function handle(ShowEvent $event)
     {
-        //
+        $input = $event->getRequest()->all();
+        $results = $this->dispatch(
+            new Show($input)
+        );
+
+        $event->setResults($results);
     }
 }
