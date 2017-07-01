@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use Illuminate\Foundation\Http\Request;
+use App\Http\Requests\CommonRequest as Request;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -10,7 +10,7 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 
-class CommonEvent
+abstract class CommonEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 

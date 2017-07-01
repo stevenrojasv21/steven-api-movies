@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\CommonRequest as Request;
+use Illuminate\Http\Request;
 
-class CommonRequest extends Request
+abstract class CommonRequest extends Request
 {
     /**
      * Get the validation rules that apply to the request.
