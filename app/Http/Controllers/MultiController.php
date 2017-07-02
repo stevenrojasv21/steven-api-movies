@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Events\Multi\MultiEvent;
+use App\Events\Multi\IndexEvent;
 use App\Http\Requests\Multi\IndexRequest;
 use App\Http\Responses\SuccessResponse;
 use App\Http\Responses\FailedResponse;

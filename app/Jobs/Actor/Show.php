@@ -4,7 +4,7 @@ namespace App\Jobs\Actor;
 
 use App\Jobs\CommonJob as Job;
 
-class Show extends
+class Show extends Job
 {
     /**
      * Execute the job.

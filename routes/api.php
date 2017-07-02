@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,8 +17,10 @@ Route::prefix('v1')->group(
 		Route::prefix('actors')->group(
 			function () {
 				Route::get('','ActorController@index');
-				Route::get('{id}','ActorController@show');
+				//This route must be first that {id} because we need to avoid
+				//that popular is taken like id
 				Route::get('popular', 'ActorController@popular');
+				Route::get('{id}','ActorController@show');
 			}
 		);
 
@@ -28,8 +28,10 @@ Route::prefix('v1')->group(
 		Route::prefix('movies')->group(
 			function () {
 				Route::get('','MovieController@index');
-				Route::get('{id}','MovieController@show');
-				Route::get('popular', 'MovieController@popular');	
+				//This route must be first that {id} because we need to avoid
+				//that popular is taken like id
+				Route::get('popular', 'MovieController@popular');
+				Route::get('{id}','MovieController@show');	
 			}
 		);
 
