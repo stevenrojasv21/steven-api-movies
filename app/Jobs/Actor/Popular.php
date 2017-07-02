@@ -3,11 +3,10 @@
 namespace App\Jobs\Actor;
 
 use App\Jobs\CommonJob as Job;
+use GuzzleHttp\Exception\ClientException;
 
 class Popular extends Job
 {
-	var $resource = null;
-
 	/**
      * Create a new job instance.
      *
@@ -34,17 +33,20 @@ class Popular extends Job
 	        	$this->url
 	        );
 
-	        if (!$this->checkResponse($response)) {
-	        	return false;
-	        }
-
-	        return $response->getBody()->getContents();
+	        return [
+                'status' => $response->getStatusCode(),
+                'content' => json_decode($response->getBody()->getContents())
+            ];
 	    } catch (ClientException $e) {
-			return false;
-		} catch (Exception $e) {
-			return false;
-		}
-
-        return true;
+            return [
+                'status' => $e->getResponse()->getStatusCode(),
+                'content' => ''
+            ];
+        } catch (Exception $e) {
+            return [
+                'status' => Response::HTTP_INTERNAL_SERVER_ERROR,
+                'content' => ''
+            ];
+        }
     }
 }

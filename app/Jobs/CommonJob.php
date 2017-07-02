@@ -5,7 +5,7 @@ namespace App\Jobs;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Foundation\Bus\Dispatchable;
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\ClientException;
+use App\Http\Responses\CommonResponse as Response;
 
 abstract class CommonJob
 {
@@ -14,6 +14,7 @@ abstract class CommonJob
     var $apiUrl = null;
     var $apiKey = null;
     var $guzzleClient = null;
+    var $resource = null;
     var $successfulStatuses = [
         200,
         201,
@@ -26,6 +27,8 @@ abstract class CommonJob
         208,
         226,
     ];
+
+    var $notFoundStatus = 404;
 
     /**
      * Create a new job instance.
@@ -42,21 +45,6 @@ abstract class CommonJob
                 'base_uri' => $this->apiUrl,
             ]
         );
-    }
-
-    /**
-     * Check Guzzle Status Response 
-     *
-     * @return boolean
-     */
-    public function checkResponse($response)
-    {
-        $status = $response->getStatusCode();
-        if (!in_array($status, $this->successfulStatuses)) {
-            return false;
-        }
-
-        return true;
     }
 
     /**
