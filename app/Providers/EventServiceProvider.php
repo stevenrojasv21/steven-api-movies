@@ -13,8 +13,33 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\Event' => [
-            'App\Listeners\EventListener',
+        //Register events and their listeners
+
+        //Actor events
+        'App\Events\Actor\IndexEvent' => [
+            'App\Listeners\Actor\HandleIndexEvent',
+        ],
+        'App\Events\Actor\ShowEvent' => [
+            'App\Listeners\Actor\HandleShowEvent',
+        ],
+        'App\Events\Actor\PopularEvent' => [
+            'App\Listeners\Actor\HandlePopularEvent',
+        ],
+
+        //Movies events
+        'App\Events\Movie\IndexEvent' => [
+            'App\Listeners\Movie\HandleIndexEvent',
+        ],
+        'App\Events\Movie\ShowEvent' => [
+            'App\Listeners\Movie\HandleShowEvent',
+        ],
+        'App\Events\Movie\PopularEvent' => [
+            'App\Listeners\Movie\HandlePopularEvent',
+        ],
+
+        //Multi events
+        'App\Events\Multi\IndexEvent' => [
+            'App\Listeners\Multi\HandleIndexEvent',
         ],
     ];
 
