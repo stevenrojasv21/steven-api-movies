@@ -33,7 +33,7 @@ class ActorController extends Controller
     public function show(ShowRequest $request, $id)
     {
     	try {
-    		$event = new ShowEvent($request);
+    		$event = new ShowEvent($request, $id);
 
     		event($event);
 
@@ -50,7 +50,14 @@ class ActorController extends Controller
 
     		event($event);
 
-    		return new SuccessResponse($event->getResults());
+            $eventResults = $event->getResults();
+
+            //Errors that come from Guzzle
+            if (!$eventResults) {
+                return new FailedResponse();
+            }
+
+    		return new SuccessResponse($eventResults);
     	} catch (Exception $e) {
     		return new FailedResponse();
     	}
