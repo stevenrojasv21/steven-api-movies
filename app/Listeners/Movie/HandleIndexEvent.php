@@ -17,8 +17,6 @@ class HandleIndexEvent extends Listener
     public function handle(IndexEvent $event)
     {
         $input = $event->getRequest()->all();
-        $job = new Index($input);
-
         $results = $this->dispatch(
             new Index($input)
         );

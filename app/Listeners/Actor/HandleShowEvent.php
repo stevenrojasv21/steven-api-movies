@@ -11,10 +11,10 @@ class HandleShowEvent extends Listener
     /**
      * Handle the event.
      *
-     * @param  ActorShowEvent  $event
+     * @param  ShowEvent  $event
      * @return void
      */
-    public function handle(ActorShowEvent $event)
+    public function handle(ShowEvent $event)
     {
         $input = $event->getRequest()->all();
         $results = $this->dispatch(

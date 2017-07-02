@@ -13,6 +13,6 @@ class Show extends Job
      */
     public function handle()
     {
-        //
+        return true;
     }
 }

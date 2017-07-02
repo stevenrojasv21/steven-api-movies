@@ -6,7 +6,7 @@ use App\Listeners\CommonListener as Listener;
 use App\Events\Multi\IndexEvent;
 use App\Jobs\Multi\Index;
 
-class HandleIndexEvent
+class HandleIndexEvent extends Listener
 {
     /**
      * Handle the event.
