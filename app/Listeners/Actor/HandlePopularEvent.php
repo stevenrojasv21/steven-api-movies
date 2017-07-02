@@ -2,22 +2,12 @@
 
 namespace App\Listeners\Actor;
 
+use App\Listeners\CommonListener as Listener;
 use App\Events\Actor\PopularEvent;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Jobs\Actor\Popular;
 
-class HandlePopularEvent
+class HandlePopularEvent extends Listener
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     /**
      * Handle the event.
      *
@@ -26,6 +16,11 @@ class HandlePopularEvent
      */
     public function handle(PopularEvent $event)
     {
-        //
+        $input = $event->getRequest()->all();
+        $results = $this->dispatch(
+            new Popular($input)
+        );
+
+        $event->setResults($results);
     }
 }

@@ -2,22 +2,12 @@
 
 namespace App\Listeners\Movie;
 
+use App\Listeners\CommonListener as Listener;
 use App\Events\Movie\IndexEvent;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Contracts\Queue\ShouldQueue;
+use App\Jobs\Movie\Index;
 
-class HandleIndexEvent
+class HandleIndexEvent extends Listener
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
     /**
      * Handle the event.
      *
@@ -26,6 +16,13 @@ class HandleIndexEvent
      */
     public function handle(IndexEvent $event)
     {
-        //
+        $input = $event->getRequest()->all();
+        $job = new Index($input);
+
+        $results = $this->dispatch(
+            new Index($input)
+        );
+
+        $event->setResults($results);
     }
 }
