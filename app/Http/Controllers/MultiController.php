@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Events\Multi\IndexEvent;
 use App\Http\Requests\Multi\IndexRequest;
 use App\Http\Responses\CommonResponse as Response;

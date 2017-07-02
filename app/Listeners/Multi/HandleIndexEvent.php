@@ -17,6 +17,8 @@ class HandleIndexEvent extends Listener
     public function handle(IndexEvent $event)
     {
         $input = $event->getRequest()->all();
+        //Get variables from query string
+        $input = array_merge($input, $event->getRequest()->query());
         $results = $this->dispatch(
             new Index($input)
         );

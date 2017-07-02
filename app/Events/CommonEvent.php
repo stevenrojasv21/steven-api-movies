@@ -24,7 +24,10 @@ abstract class CommonEvent
      */
     public function __construct(Request $request)
     {
-        $this->setRequest($request);
+        //Fix for missing params in the request
+        //As this project does not use Iluminate\Request directly
+        //Query string is missed for the request
+        $this->setRequest($request->capture());
     }
 
     public function setRequest(Request $request)
