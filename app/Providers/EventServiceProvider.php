@@ -28,6 +28,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Actor\SearchEvent' => [
             'App\Listeners\Actor\HandleSearchEvent',
         ],
+        'App\Events\Actor\MoviesEvent' => [
+            'App\Listeners\Actor\HandleMoviesEvent',
+        ],
 
         //Movies events
         'App\Events\Movie\IndexEvent' => [

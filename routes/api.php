@@ -22,6 +22,7 @@ Route::prefix('v1')->group(
 				//that popular is taken like id
 				Route::get('popular', 'ActorController@popular');
 				Route::get('search','ActorController@search');
+				Route::get('{id}/movies','ActorController@movies');
 				Route::get('{id}','ActorController@show');
 				
 			}
