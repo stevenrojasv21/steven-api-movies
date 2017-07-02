@@ -25,6 +25,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\Actor\PopularEvent' => [
             'App\Listeners\Actor\HandlePopularEvent',
         ],
+        'App\Events\Actor\SearchEvent' => [
+            'App\Listeners\Actor\HandleSearchEvent',
+        ],
 
         //Movies events
         'App\Events\Movie\IndexEvent' => [
@@ -35,6 +38,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\Movie\PopularEvent' => [
             'App\Listeners\Movie\HandlePopularEvent',
+        ],
+        'App\Events\Movie\SearchEvent' => [
+            'App\Listeners\Movie\HandleSearchEvent',
         ],
 
         //Multi events

@@ -27,7 +27,10 @@ abstract class CommonEvent
         //Fix for missing params in the request
         //As this project does not use Iluminate\Request directly
         //Query string is missed for the request
-        $this->setRequest($request->capture());
+        $input = $request->all();
+        $request = $request->capture();
+        $request->merge($input);
+        $this->setRequest($request);
     }
 
     public function setRequest(Request $request)

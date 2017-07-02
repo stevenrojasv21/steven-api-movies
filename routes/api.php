@@ -21,7 +21,9 @@ Route::prefix('v1')->group(
 				//This route must be first that {id} because we need to avoid
 				//that popular is taken like id
 				Route::get('popular', 'ActorController@popular');
+				Route::get('search','ActorController@search');
 				Route::get('{id}','ActorController@show');
+				
 			}
 		);
 
@@ -32,7 +34,8 @@ Route::prefix('v1')->group(
 				//This route must be first that {id} because we need to avoid
 				//that popular is taken like id
 				Route::get('popular', 'MovieController@popular');
-				Route::get('{id}','MovieController@show');	
+				Route::get('search','MovieController@search');
+				Route::get('{id}','MovieController@show');
 			}
 		);
 
