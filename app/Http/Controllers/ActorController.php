@@ -33,12 +33,13 @@ class ActorController extends Controller
     public function show(ShowRequest $request, $id)
     {
     	try {
-    		$event = new ShowEvent($request);
+    		$event = new ShowEvent($request, $id);
 
     		event($event);
 
     		return new SuccessResponse($event->getResults());
     	} catch (Exception $e) {
+            var_dump($e);
     		return new FailedResponse();
     	}
     }

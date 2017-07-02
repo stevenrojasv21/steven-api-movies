@@ -38,16 +38,12 @@ class Popular extends Job
 	        	return false;
 	        }
 
-	        return [
-	        	'status' => $response->getStatusCode(),
-	        	'content' => $response->getBody()->getContents(),
-	        ];
+	        return $response->getBody()->getContents();
 	    } catch (ClientException $e) {
 			return false;
 		} catch (Exception $e) {
 			return false;
 		}
-
 
         return true;
     }
