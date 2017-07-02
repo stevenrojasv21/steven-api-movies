@@ -39,7 +39,6 @@ class ActorController extends Controller
 
     		return new SuccessResponse($event->getResults());
     	} catch (Exception $e) {
-            var_dump($e);
     		return new FailedResponse();
     	}
     }
