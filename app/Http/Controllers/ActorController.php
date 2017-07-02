@@ -7,12 +7,13 @@ use Illuminate\Http\Request;
 use App\Events\Actor\IndexEvent;
 use App\Events\Actor\ShowEvent;
 use App\Events\Actor\PopularEvent;
+use App\Http\Responses\CommonResponse as Response;
 use App\Http\Requests\Actor\IndexRequest;
 use App\Http\Requests\Actor\ShowRequest;
 use App\Http\Requests\Actor\PopularRequest;
 use App\Http\Responses\SuccessResponse;
 use App\Http\Responses\FailedResponse;
-use App\Http\Responses\TooManyRequestsResponse;
+use App\Http\Responses\NotFoundResponse;
 
 class ActorController extends Controller
 {
@@ -33,33 +34,56 @@ class ActorController extends Controller
     public function show(ShowRequest $request, $id)
     {
     	try {
-    		$event = new ShowEvent($request, $id);
+            $event = new ShowEvent($request, $id);
+            $response = null;
 
-    		event($event);
+            event($event);
 
-    		return new SuccessResponse($event->getResults());
-    	} catch (Exception $e) {
-    		return new FailedResponse();
-    	}
+            $eventResults = $event->getResults();
+
+            switch ($eventResults['status']) {
+                case Response::HTTP_NOT_FOUND:
+                    $response = new NotFoundResponse();
+                    break;
+                case Response::HTTP_OK:
+                    $response = new SuccessResponse($eventResults['content']);
+                    break;
+                default:
+                    $response = new FailedResponse();
+                    break;        
+            }
+
+            return $response;
+        } catch (Exception $e) {
+            return new FailedResponse();
+        }
     }
 
     public function popular(PopularRequest $request)
     {
     	try {
-    		$event = new PopularEvent($request);
+            $event = new PopularEvent($request);
+            $response = null;
 
-    		event($event);
+            event($event);
 
             $eventResults = $event->getResults();
 
-            //Errors that come from Guzzle
-            if (!$eventResults) {
-                return new FailedResponse();
+            switch ($eventResults['status']) {
+                case Response::HTTP_NOT_FOUND:
+                    $response = new NotFoundResponse();
+                    break;
+                case Response::HTTP_OK:
+                    $response = new SuccessResponse($eventResults['content']);
+                    break;
+                default:
+                    $response = new FailedResponse();
+                    break;        
             }
 
-    		return new SuccessResponse($eventResults);
-    	} catch (Exception $e) {
-    		return new FailedResponse();
-    	}
+            return $response;
+        } catch (Exception $e) {
+            return new FailedResponse();
+        }
     }
 }
