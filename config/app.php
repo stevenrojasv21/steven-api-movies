@@ -4,6 +4,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | App Variables
+    |--------------------------------------------------------------------------
+    |
+    | This section is to assign variables that we will use inside the app.
+    |
+    */
+
+    'apiUrl' => env('EXTERNAL_API_URL', null),
+    'apiKey' => env('EXTERNAL_API_KEY', null),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Name
     |--------------------------------------------------------------------------
     |
@@ -227,5 +239,4 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
 ];
