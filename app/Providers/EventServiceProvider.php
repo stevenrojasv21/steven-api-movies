@@ -27,14 +27,14 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         //Movies events
-        'App\Events\Movies\IndexEvent' => [
-            'App\Listeners\Movies\HandleIndexEvent',
+        'App\Events\Movie\IndexEvent' => [
+            'App\Listeners\Movie\HandleIndexEvent',
         ],
-        'App\Events\Movies\ShowEvent' => [
-            'App\Listeners\Movies\HandleShowEvent',
+        'App\Events\Movie\ShowEvent' => [
+            'App\Listeners\Movie\HandleShowEvent',
         ],
-        'App\Events\Movies\PopularEvent' => [
-            'App\Listeners\Movies\HandlePopularEvent',
+        'App\Events\Movie\PopularEvent' => [
+            'App\Listeners\Movie\HandlePopularEvent',
         ],
 
         //Multi events

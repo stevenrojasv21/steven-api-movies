@@ -15,6 +15,7 @@ abstract class CommonEvent
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     var $request = null;
+    var $results = null;
 
     /**
      * Create a new event instance.
@@ -31,8 +32,18 @@ abstract class CommonEvent
         $this->request = $request;
     }
 
-    public function getRequest(Request $request)
+    public function getRequest()
     {
         return $this->request;
+    }
+
+    public function setResults($results)
+    {
+        $this->results = $results;
+    }
+
+    public function getResults()
+    {
+        return $this->results;
     }
 }

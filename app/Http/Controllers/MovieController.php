@@ -10,6 +10,9 @@ use App\Events\Movie\PopularEvent;
 use App\Http\Requests\Movie\IndexRequest;
 use App\Http\Requests\Movie\ShowRequest;
 use App\Http\Requests\Movie\PopularRequest;
+use App\Http\Responses\SuccessResponse;
+use App\Http\Responses\FailedResponse;
+use App\Http\Responses\TooManyRequestsResponse;
 
 class MovieController extends Controller
 {
@@ -23,7 +26,7 @@ class MovieController extends Controller
 
     		return new SuccessResponse($event->getResults());
     	} catch (Exception $e) {
-    		return new ErrorResponse();
+    		return new FailedResponse($e);
     	}
     }
 
@@ -36,7 +39,7 @@ class MovieController extends Controller
 
     		return new SuccessResponse($event->getResults());
     	} catch (Exception $e) {
-    		return new ErrorResponse();
+    		return new FailedResponse();
     	}
     }
 
@@ -49,7 +52,7 @@ class MovieController extends Controller
 
     		return new SuccessResponse($event->getResults());
     	} catch (Exception $e) {
-    		return new ErrorResponse();
+    		return new FailedResponse();
     	}
     }
 }

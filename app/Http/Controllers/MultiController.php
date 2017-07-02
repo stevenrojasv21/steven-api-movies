@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Events\Multi\MultiEvent;
 use App\Http\Requests\Multi\IndexRequest;
+use App\Http\Responses\SuccessResponse;
+use App\Http\Responses\FailedResponse;
+use App\Http\Responses\TooManyRequestsResponse;
 
 class MultiController extends Controller
 {
@@ -17,7 +20,7 @@ class MultiController extends Controller
 
     		return new SuccessResponse($event->getResults());
     	} catch (Exception $e) {
-    		return new ErrorResponse();
+    		return new FailedResponse();
     	}
     }
 }

@@ -10,6 +10,9 @@ use App\Events\Actor\PopularEvent;
 use App\Http\Requests\Actor\IndexRequest;
 use App\Http\Requests\Actor\ShowRequest;
 use App\Http\Requests\Actor\PopularRequest;
+use App\Http\Responses\SuccessResponse;
+use App\Http\Responses\FailedResponse;
+use App\Http\Responses\TooManyRequestsResponse;
 
 class ActorController extends Controller
 {
@@ -23,7 +26,7 @@ class ActorController extends Controller
 
     		return new SuccessResponse($event->getResults());
     	} catch (Exception $e) {
-    		return new ErrorResponse();
+    		return new FailedResponse();
     	}
     }
 
@@ -36,7 +39,7 @@ class ActorController extends Controller
 
     		return new SuccessResponse($event->getResults());
     	} catch (Exception $e) {
-    		return new ErrorResponse();
+    		return new FailedResponse();
     	}
     }
 
@@ -49,7 +52,7 @@ class ActorController extends Controller
 
     		return new SuccessResponse($event->getResults());
     	} catch (Exception $e) {
-    		return new ErrorResponse();
+    		return new FailedResponse();
     	}
     }
 }
