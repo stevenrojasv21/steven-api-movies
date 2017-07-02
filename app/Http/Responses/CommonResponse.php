@@ -34,7 +34,7 @@ abstract class CommonResponse extends Response
     	}
 
     	$data = [
-    		'status' => true,
+    		'status' => $statusFlag,
     		'content' => $content
     	];
 
