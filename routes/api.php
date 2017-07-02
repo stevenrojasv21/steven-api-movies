@@ -16,7 +16,8 @@ Route::prefix('v1')->group(
 		//Actors route
 		Route::prefix('actors')->group(
 			function () {
-				Route::get('','ActorController@index');
+				//This URI does not exist in api.themoviedb.org
+				//Route::get('','ActorController@index');
 				//This route must be first that {id} because we need to avoid
 				//that popular is taken like id
 				Route::get('popular', 'ActorController@popular');
