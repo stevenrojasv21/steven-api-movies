@@ -14,10 +14,9 @@ use Illuminate\Validation\ValidationException;
 
 class MultiController extends Controller
 {
-    
     public function index(IndexRequest $request)
     {
-    	try {
+        try {
             $event = new IndexEvent($request);
             $response = null;
 
@@ -34,7 +33,7 @@ class MultiController extends Controller
                     break;
                 default:
                     $response = new FailedResponse();
-                    break;        
+                    break;
             }
 
             return $response;

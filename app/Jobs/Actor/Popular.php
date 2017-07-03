@@ -7,21 +7,21 @@ use GuzzleHttp\Exception\ClientException;
 
 class Popular extends Job
 {
-	/**
+    /**
      * Create a new job instance.
      *
      * @return void
      */
     public function __construct($input)
     {
-    	parent::__construct();
+        parent::__construct();
         $this->input = $input;
-    	$this->resource = 'person/popular';
-    	$this->method = 'GET';
-    	$this->url =  $this->resource."?api_key=".$this->apiKey;
+        $this->resource = 'person/popular';
+        $this->method = 'GET';
+        $this->url =  $this->resource."?api_key=".$this->apiKey;
 
         if (isset($this->input['page'])) {
-            $this->url .= '&page='.$this->input['page'];            
+            $this->url .= '&page='.$this->input['page'];
         }
     }
 
@@ -32,17 +32,17 @@ class Popular extends Job
      */
     public function handle()
     {
-		try {
-	        $response = $this->guzzleClient->request(
-	        	$this->method,
-	        	$this->url
-	        );
+        try {
+            $response = $this->guzzleClient->request(
+                $this->method,
+                $this->url
+            );
 
-	        return [
+            return [
                 'status' => $response->getStatusCode(),
                 'content' => json_decode($response->getBody()->getContents())
             ];
-	    } catch (ClientException $e) {
+        } catch (ClientException $e) {
             return [
                 'status' => $e->getResponse()->getStatusCode(),
                 'content' => ''

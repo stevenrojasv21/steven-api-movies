@@ -15,8 +15,8 @@ abstract class CommonEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels, ValidatesRequests;
 
-    var $request = null;
-    var $results = null;
+    public $request = null;
+    public $results = null;
 
     /**
      * Create a new event instance.
