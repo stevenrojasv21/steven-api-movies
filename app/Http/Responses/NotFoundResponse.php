@@ -2,11 +2,10 @@
 
 namespace App\Http\Responses;
 
-
 class NotFoundResponse extends CommonResponse
 {
     /**
-     * 
+     *
      *
      * @return void
      */

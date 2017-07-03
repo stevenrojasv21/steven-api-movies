@@ -2,11 +2,10 @@
 
 namespace App\Http\Responses;
 
-
 class TooManyRequestsResponse extends CommonResponse
 {
     /**
-     * 
+     *
      *
      * @return void
      */

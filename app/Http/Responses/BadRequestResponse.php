@@ -2,11 +2,10 @@
 
 namespace App\Http\Responses;
 
-
 class BadRequestResponse extends CommonResponse
 {
     /**
-     * 
+     *
      *
      * @return void
      */

@@ -13,10 +13,10 @@ class Index extends Job
      */
     public function __construct()
     {
-    	parent::__construct();
-    	$this->resource = 'movie';
-    	$this->method = 'GET';
-    	$this->url =  $this->resource."?api_key=".$this->apiKey;
+        parent::__construct();
+        $this->resource = 'movie';
+        $this->method = 'GET';
+        $this->url =  $this->resource."?api_key=".$this->apiKey;
     }
 
     /**
@@ -26,21 +26,21 @@ class Index extends Job
      */
     public function handle()
     {
-		try {
-	        $response = $this->guzzleClient->request(
-	        	$this->method,
-	        	$this->url
-	        );
+        try {
+            $response = $this->guzzleClient->request(
+                $this->method,
+                $this->url
+            );
 
-	        if (!$this->checkResponse($response)) {
-	        	return false;
-	        }
+            if (!$this->checkResponse($response)) {
+                return false;
+            }
 
-	        return $response->getBody()->getContents();
-	    } catch (ClientException $e) {
-			return false;
-		} catch (Exception $e) {
-			return false;
-		}
+            return $response->getBody()->getContents();
+        } catch (ClientException $e) {
+            return false;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 }

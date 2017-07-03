@@ -23,23 +23,22 @@ use Illuminate\Validation\ValidationException;
 
 class ActorController extends Controller
 {
-
     public function index(IndexRequest $request)
     {
-    	try {
-    		$event = new IndexEvent($request);
+        try {
+            $event = new IndexEvent($request);
 
-    		event($event);
+            event($event);
 
-    		return new SuccessResponse($event->getResults());
-    	} catch (Exception $e) {
-    		return new FailedResponse();
-    	}
+            return new SuccessResponse($event->getResults());
+        } catch (Exception $e) {
+            return new FailedResponse();
+        }
     }
 
     public function show(ShowRequest $request, $id)
     {
-    	try {
+        try {
             $event = new ShowEvent($request, $id);
             $response = null;
 
@@ -56,7 +55,7 @@ class ActorController extends Controller
                     break;
                 default:
                     $response = new FailedResponse();
-                    break;        
+                    break;
             }
 
             return $response;
@@ -69,7 +68,7 @@ class ActorController extends Controller
 
     public function popular(PopularRequest $request)
     {
-    	try {
+        try {
             $event = new PopularEvent($request);
             $response = null;
 
@@ -86,7 +85,7 @@ class ActorController extends Controller
                     break;
                 default:
                     $response = new FailedResponse();
-                    break;        
+                    break;
             }
 
             return $response;
@@ -116,7 +115,7 @@ class ActorController extends Controller
                     break;
                 default:
                     $response = new FailedResponse();
-                    break;        
+                    break;
             }
 
             return $response;
@@ -146,7 +145,7 @@ class ActorController extends Controller
                     break;
                 default:
                     $response = new FailedResponse();
-                    break;        
+                    break;
             }
 
             return $response;

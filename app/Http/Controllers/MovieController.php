@@ -21,15 +21,14 @@ use Illuminate\Validation\ValidationException;
 
 class MovieController extends Controller
 {
-    
     public function index(IndexRequest $request)
     {
-    	try {
-    		$event = new IndexEvent($request);
+        try {
+            $event = new IndexEvent($request);
 
-    		event($event);
+            event($event);
 
-    		$eventResults = $event->getResults();
+            $eventResults = $event->getResults();
 
             //Errors that come from Guzzle
             if (!$eventResults) {
@@ -37,7 +36,7 @@ class MovieController extends Controller
             }
 
             return new SuccessResponse($eventResults);
-    	} catch (ValidationException $e) {
+        } catch (ValidationException $e) {
             return new BadRequestResponse();
         } catch (Exception $e) {
             return new FailedResponse();
@@ -46,11 +45,11 @@ class MovieController extends Controller
 
     public function show(ShowRequest $request, $id)
     {
-    	try {
-    		$event = new ShowEvent($request, $id);
+        try {
+            $event = new ShowEvent($request, $id);
             $response = null;
 
-    		event($event);
+            event($event);
 
             $eventResults = $event->getResults();
 
@@ -63,11 +62,11 @@ class MovieController extends Controller
                     break;
                 default:
                     $response = new FailedResponse();
-                    break;        
+                    break;
             }
 
             return $response;
-    	} catch (ValidationException $e) {
+        } catch (ValidationException $e) {
             return new BadRequestResponse();
         } catch (Exception $e) {
             return new FailedResponse();
@@ -76,7 +75,7 @@ class MovieController extends Controller
 
     public function popular(PopularRequest $request)
     {
-    	try {
+        try {
             $event = new PopularEvent($request);
             $response = null;
 
@@ -93,7 +92,7 @@ class MovieController extends Controller
                     break;
                 default:
                     $response = new FailedResponse();
-                    break;        
+                    break;
             }
 
             return $response;
@@ -105,7 +104,6 @@ class MovieController extends Controller
     public function search(SearchRequest $request)
     {
         try {
-
             $event = new SearchEvent($request);
             $response = null;
 
@@ -122,7 +120,7 @@ class MovieController extends Controller
                     break;
                 default:
                     $response = new FailedResponse();
-                    break;        
+                    break;
             }
 
             return $response;

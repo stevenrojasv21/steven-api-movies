@@ -11,12 +11,12 @@ abstract class CommonJob
 {
     use Dispatchable, SerializesModels;
 
-    var $apiUrl = null;
-    var $apiKey = null;
-    var $guzzleClient = null;
-    var $resource = null;
-    var $input = null;
-    var $successfulStatuses = [
+    public $apiUrl = null;
+    public $apiKey = null;
+    public $guzzleClient = null;
+    public $resource = null;
+    public $input = null;
+    public $successfulStatuses = [
         200,
         201,
         202,
@@ -29,7 +29,7 @@ abstract class CommonJob
         226,
     ];
 
-    var $notFoundStatus = 404;
+    public $notFoundStatus = 404;
 
     /**
      * Create a new job instance.

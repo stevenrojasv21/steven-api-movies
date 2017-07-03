@@ -20,7 +20,7 @@ class Search extends Job
         $this->url =  $this->resource."&api_key=".$this->apiKey;
 
         if (isset($this->input['page'])) {
-            $this->url .= '&page='.$this->input['page'];            
+            $this->url .= '&page='.$this->input['page'];
         }
     }
 
