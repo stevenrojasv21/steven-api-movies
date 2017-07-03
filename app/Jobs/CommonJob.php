@@ -15,6 +15,7 @@ abstract class CommonJob
     var $apiKey = null;
     var $guzzleClient = null;
     var $resource = null;
+    var $input = null;
     var $successfulStatuses = [
         200,
         201,

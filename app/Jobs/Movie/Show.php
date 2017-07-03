@@ -15,9 +15,14 @@ class Show extends Job
     public function __construct($input)
     {
     	parent::__construct();
-    	$this->resource = 'movie/'.$input['id'];
+        $this->input = $input;
+    	$this->resource = 'movie/'.$this->input['id'];
     	$this->method = 'GET';
     	$this->url =  $this->resource."?api_key=".$this->apiKey;
+
+        if (isset($this->input['page'])) {
+            $this->url .= '&page='.$this->input['page'];            
+        }
     }
 
     /**

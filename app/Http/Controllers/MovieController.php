@@ -16,10 +16,12 @@ use App\Http\Requests\Movie\SearchRequest;
 use App\Http\Responses\SuccessResponse;
 use App\Http\Responses\FailedResponse;
 use App\Http\Responses\NotFoundResponse;
+use App\Http\Responses\BadRequestResponse;
+use Illuminate\Validation\ValidationException;
 
 class MovieController extends Controller
 {
-    //
+    
     public function index(IndexRequest $request)
     {
     	try {
@@ -35,9 +37,11 @@ class MovieController extends Controller
             }
 
             return new SuccessResponse($eventResults);
-    	} catch (Exception $e) {
-    		return new FailedResponse($e);
-    	}
+    	} catch (ValidationException $e) {
+            return new BadRequestResponse();
+        } catch (Exception $e) {
+            return new FailedResponse();
+        }
     }
 
     public function show(ShowRequest $request, $id)
@@ -63,9 +67,11 @@ class MovieController extends Controller
             }
 
             return $response;
-    	} catch (Exception $e) {
-    		return new FailedResponse();
-    	}
+    	} catch (ValidationException $e) {
+            return new BadRequestResponse();
+        } catch (Exception $e) {
+            return new FailedResponse();
+        }
     }
 
     public function popular(PopularRequest $request)
@@ -99,6 +105,7 @@ class MovieController extends Controller
     public function search(SearchRequest $request)
     {
         try {
+
             $event = new SearchEvent($request);
             $response = null;
 
@@ -119,8 +126,9 @@ class MovieController extends Controller
             }
 
             return $response;
+        } catch (ValidationException $e) {
+            return new BadRequestResponse();
         } catch (Exception $e) {
-            var_dump($e);
             return new FailedResponse();
         }
     }
