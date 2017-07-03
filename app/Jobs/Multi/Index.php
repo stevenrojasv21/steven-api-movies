@@ -14,9 +14,14 @@ class Index extends Job
     public function __construct($input)
     {
     	parent::__construct();
-    	$this->resource = 'search/multi?query='.$input['query'];
+        $this->input = $input;
+    	$this->resource = 'search/multi?query='.$this->input['query'];
     	$this->method = 'GET';
     	$this->url =  $this->resource."&api_key=".$this->apiKey;
+
+        if (isset($this->input['page'])) {
+            $this->url .= '&page='.$this->input['page'];
+        }
     }
 
     /**

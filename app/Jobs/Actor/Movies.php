@@ -14,9 +14,14 @@ class Movies extends Job
     public function __construct($input)
     {
         parent::__construct();
-        $this->resource = 'person/'.$input['id'].'/movie_credits';
+        $this->input = $input;
+        $this->resource = 'person/'.$this->input['id'].'/movie_credits';
         $this->method = 'GET';
         $this->url =  $this->resource."?api_key=".$this->apiKey;
+
+        if (isset($this->input['page'])) {
+            $this->url .= '&page='.$this->input['page'];            
+        }
     }
 
     /**

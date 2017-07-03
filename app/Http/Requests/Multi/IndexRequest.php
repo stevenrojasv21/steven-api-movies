@@ -14,7 +14,8 @@ class IndexRequest extends Request
     public function rules()
     {
         return [
-            //
+            'query' => 'required|string',
+            'page' => 'sometimes|integer|min:1',
         ];
     }
 }

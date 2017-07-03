@@ -14,7 +14,7 @@ class ShowRequest extends Request
     public function rules()
     {
         return [
-            //
+            'page' => 'sometimes|integer|min:1',
         ];
     }
 }

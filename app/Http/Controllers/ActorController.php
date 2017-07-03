@@ -18,10 +18,12 @@ use App\Http\Requests\Actor\MoviesRequest;
 use App\Http\Responses\SuccessResponse;
 use App\Http\Responses\FailedResponse;
 use App\Http\Responses\NotFoundResponse;
+use App\Http\Responses\BadRequestResponse;
+use Illuminate\Validation\ValidationException;
 
 class ActorController extends Controller
 {
-    //
+
     public function index(IndexRequest $request)
     {
     	try {
@@ -58,8 +60,9 @@ class ActorController extends Controller
             }
 
             return $response;
+        } catch (ValidationException $e) {
+            return new BadRequestResponse();
         } catch (Exception $e) {
-            var_dump($e);
             return new FailedResponse();
         }
     }
@@ -87,6 +90,8 @@ class ActorController extends Controller
             }
 
             return $response;
+        } catch (ValidationException $e) {
+            return new BadRequestResponse();
         } catch (Exception $e) {
             return new FailedResponse();
         }
@@ -115,8 +120,9 @@ class ActorController extends Controller
             }
 
             return $response;
+        } catch (ValidationException $e) {
+            return new BadRequestResponse();
         } catch (Exception $e) {
-            var_dump($e);
             return new FailedResponse();
         }
     }
@@ -144,8 +150,9 @@ class ActorController extends Controller
             }
 
             return $response;
+        } catch (ValidationException $e) {
+            return new BadRequestResponse();
         } catch (Exception $e) {
-            var_dump($e);
             return new FailedResponse();
         }
     }
