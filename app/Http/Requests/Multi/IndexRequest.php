@@ -15,7 +15,7 @@ class IndexRequest extends Request
     {
         return [
             'query' => 'required|string',
-            'page' => 'sometimes|integer|min:1',
+            'page' => 'sometimes|integer|min:1|max:1000',
         ];
     }
 }
